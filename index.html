@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Livescore</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/public/css/style.css" type="text/html">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 event" v-for="event in events">
+				<div class="row">
+					<div class="col title">
+						<span class="title">{{event.league}} - {{event.location}}, {{event.sport}}</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-5 text-center">
+						<span class="team-one">{{event.teams.split(',')[0]}}</span>
+					</div>
+					<div class="col-2 text-center">
+						<span class="separator">-</span>
+					</div>
+					<div class="col-5 text-center">
+						<span class="team-two">{{event.teams.split(',')[1]}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var app = new Vue({
+		el: '#app',
+		data() {
+			return {
+				title: "Demo",
+				events: {}
+			}
+		},
+		methods: {
+			getEvents: function ()
+			{
+				let that = this
+
+				axios
+				.get('/api/v1/events/154914/217')
+				.then(result => {
+					that.events = result.data.data.shift()
+				})
+			}
+		},
+		mounted: function ()
+		{
+			this.getEvents()
+		}
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+[
+	{
+		"url": "http://prematch.lsports.eu/OddService/GetLeagues",
+		"model": "leagues"
+	},
+	{
+		"url": "http://prematch.lsports.eu/OddService/GetLocations",
+		"model": "locations"
+	},
+	{
+		"url": "http://prematch.lsports.eu/OddService/GetSports",
+		"model": "sport"
+	},
+	{
+		"url": "http://prematch.lsports.eu/OddService/GetEvents",
+		"model": "events"
+	}
+]
